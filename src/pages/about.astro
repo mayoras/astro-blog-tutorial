@@ -1,4 +1,6 @@
 ---
+  import "../styles/global.css";
+  
   const pageTitle = "About Me";
   const identity = {
     firstName: "Sarah",
@@ -12,6 +14,10 @@
   const happy = true;
   const finished = false;
   const goal = 3;
+
+  const skillColor = 'navy';
+  const fontWeight = 'bold';
+  const textCase = 'uppercase';
 ---
 
 <html lang="en">
@@ -21,12 +27,19 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+    <style>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+    </style>
 	</head>
 	<body>
 	<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/blog">Blog</a>
-    <h1>{pageTitle}</h1>
+  <a href="/about/">About</a>
+  <a href="/blog">Blog</a>
+
+  <h1>{pageTitle}</h1>
   <h2>... and my new Astro site!</h2>
 
   <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
@@ -43,7 +56,7 @@
 </ul>
 <p>My skills are:</p>
 <ul>
-  {skills.map((skill) => <li>{skill}</li>)}
+  {skills.map((skill) => <li class="skill">{skill}</li>)}
 </ul>
 {happy && <p>I am happy to be learning Astro!</p>}
 
@@ -51,4 +64,12 @@
 
 {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 	</body>
+    
+  <style define:vars={{skillColor, fontWeight, textCase}}>
+  .skill {
+    font-weight: var(--fontWeight);
+    color: var(--skillColor);
+    text-transform: var(--textCase);
+  }
+  </style>
 </html>
